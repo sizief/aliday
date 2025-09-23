@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Photos — Projects</title>
+    <style>
+      html, body { margin: 0; padding: 0; background: #000; color: #fff; }
+      body { font-family: Courier New, monospace; }
+      .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+      h1 { font-size: 28px; margin: 0 0 16px 0; }
+      p { line-height: 1.6; }
+      .projects { display: grid; grid-template-columns: 1fr; gap: 32px; }
+      .project { }
+      .card-link { display: block; color: #fff; text-decoration: none; }
+      .image-wrap { position: relative; width: 100%; height: 56vh; min-height: 300px; background: #111; overflow: hidden; }
+      .image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+      .overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px 16px 16px 16px; background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0)); }
+      .title { font-size: 60px; color: rgb(255, 255, 255); }
+      .desc { color: #ccc; font-size: 18px; margin-top: 8px; padding: 0 2px; }
+      @media (max-width: 600px) {
+        .image-wrap { height: 44vh; min-height: 220px; }
+        .title { font-size: 50px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Photo Projects</h1>
+      <div class="projects">
+        <div class="project">
+          <a class="card-link" href="/photos/ballena-alegre/viewer.html#1">
+            <div class="image-wrap">
+              <img src="../assets/images/ballena-alegre-optimized/6.jpg" alt="Ballena Alegre">
+              <div class="overlay">
+                <div class="title">Ballena Alegre</div>
+              </div>
+            </div>
+          </a>
+          <div class="desc">A summer series from Ballena Alegre, Costa Brava.</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
