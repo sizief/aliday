@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="viewport">
-      <img id="photo" src="" alt="">
+      <img id="photo" src="" alt="" style="background-color: rgb(58, 58, 58);">
     </div>
     <div class="nav prev"><a id="prevLink" class="disabled">Prev</a></div>
     <div class="center"><span id="counter"></span></div>
@@ -46,13 +46,11 @@
           var id = imageIds[index];
           var baseOptim = '../../assets/images/camino-primitivo-2024-optimized/';
 
-          function setOptim() {
-            imgEl.src = baseOptim + id + '.jpg';
-          }
+          
 
           imgEl.onerror = null;
-
-          setOptim();
+          imgEl.src = '';
+          imgEl.src = baseOptim + id + '.jpg';
           imgEl.setAttribute('alt', 'Camino Primitivo 2024 — ' + id);
           document.title = 'Camino Primitivo 2024 — ' + id;
 
