@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ballena Alegre — Viewer</title>
+    <link rel="stylesheet" href="../photo.css">
+  </head>
+  <body>
+    <div class="viewport">
+      <img id="photo" src="" alt="" style="background-color: rgb(58, 58, 58);">
+    </div>
+    <div class="nav prev"><a id="prevLink" class="disabled">Prev</a></div>
+    <div class="center"><span id="counter"></span></div>
+    <div class="nav next"><a id="nextLink">Next</a></div>
+
+    <div class="footer">
+      <a href="/photos/">Back to Photos</a> · © Ali Deishidi
+    </div>
+
+    <script>
+      (function() {
+        var imageIds = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
+        var imgEl = document.getElementById('photo');
+        var prevEl = document.getElementById('prevLink');
+        var nextEl = document.getElementById('nextLink');
+        var counterEl = document.getElementById('counter');
+
+        function getIndexFromHash() {
+          var id = (location.hash || '').replace('#','').trim();
+          var idx = imageIds.indexOf(id);
+          return idx >= 0 ? idx : 0;
+        }
+
+        function setAnchor(el, targetIndex) {
+          if (targetIndex < 0 || targetIndex >= imageIds.length) {
+            el.classList.add('disabled');
+            el.removeAttribute('href');
+            return;
+          }
+          el.classList.remove('disabled');
+          el.setAttribute('href', '#' + imageIds[targetIndex]);
+        }
+
+        function render(index) {
+          var id = imageIds[index];
+          var baseOptim = '../../assets/images/camino-primitivo-2025-optimized/';
+
+          imgEl.onerror = null;
+          imgEl.src = '';
+          imgEl.src = baseOptim + id + '.jpg';
+          imgEl.setAttribute('alt', 'Ballena Alegre — ' + id);
+          document.title = 'Ballena Alegre — ' + id;
+
+          setAnchor(prevEl, index - 1);
+          setAnchor(nextEl, index + 1);
+          if (counterEl) { counterEl.textContent = id; }
+        }
+
+        function onHashChange() {
+          render(getIndexFromHash());
+        }
+
+        window.addEventListener('hashchange', onHashChange);
+        // Initial render
+        onHashChange();
+      })();
+    </script>
+  </body>
+</html>
+
+
