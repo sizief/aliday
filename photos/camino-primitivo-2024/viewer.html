@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ballena Alegre — Viewer</title>
+    <title>Camino Primitivo 2024 — Viewer</title>
     <link rel="stylesheet" href="../photo.css">
   </head>
   <body>
@@ -20,7 +20,7 @@
 
     <script>
       (function() {
-        var imageIds = ["1","2","3","4","5","6","7","8","9","10","11"];
+        var imageIds = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"];
         var imgEl = document.getElementById('photo');
         var prevEl = document.getElementById('prevLink');
         var nextEl = document.getElementById('nextLink');
@@ -44,7 +44,7 @@
 
         function render(index) {
           var id = imageIds[index];
-          var baseOptim = '../../assets/images/ballena-alegre-optimized/';
+          var baseOptim = '../../assets/images/camino-primitivo-2024-optimized/';
 
           function setOptim() {
             imgEl.src = baseOptim + id + '.jpg';
@@ -53,8 +53,8 @@
           imgEl.onerror = null;
 
           setOptim();
-          imgEl.setAttribute('alt', 'Ballena Alegre — ' + id);
-          document.title = 'Ballena Alegre — ' + id;
+          imgEl.setAttribute('alt', 'Camino Primitivo 2024 — ' + id);
+          document.title = 'Camino Primitivo 2024 — ' + id;
 
           setAnchor(prevEl, index - 1);
           setAnchor(nextEl, index + 1);
@@ -72,5 +72,7 @@
     </script>
   </body>
 </html>
+
+
 
 
