@@ -1,0 +1,21 @@
+How LLM Inference Works
+
+There is a question with 5 words (tokens, to be precise — "unbelievable" might be 3 tokens, not 1).
+
+1. Find embeddings for each token. E1, E2 and so on. Then add positional encoding to each embedding so the model knows the order of tokens.
+
+2. Multiply Ex by Wq to get the Query, multiply Ex by Wk to get the Key, multiply Ex by Wv to get the Value. The Query asks "what am I looking for?", the Key says "what do I advertise about myself?", the Value says "what do I actually contribute if you attend to me?". The attention score is computed as softmax(QKᵀ / √d) × V — this tells each token how much to attend to every other token, then pulls in the corresponding values. This is one attention head.
+
+3. Do it again with a different set of Wq, Wk, Wv for the second attention head. All heads run in parallel.
+
+4. Do this across 96 attention heads (GPT-3's number). Each head learns to attend to different kinds of relationships.
+
+5. Repeat from the beginning with a new set of weight matrices (W2q, W2k, W2v...). This is one layer. GPT-3 has 96 layers. Between each attention block and the next layer there is a Multilayer Perceptron (MLP) that adds meaning to each token independently. Each block also uses residual connections (the input is added back to the output) and layer normalization to keep things stable.
+
+6. End up with an output vector for every token position. Read off the vector at the last token position — this carries the meaning of the whole context. Multiply it by Wd to get scores over the full vocabulary. Run softmax and pick the most probable next token.
+
+7. Decode that token index to a word and output it.
+
+8. In theory, you'd add the new token and re-run from the beginning with 6 tokens. In practice, the model uses a KV cache — the Keys and Values from previous tokens are saved, so only the new token's computation needs to run. This is a major efficiency win and exactly what vLLM's PagedAttention manages.
+
+9. Repeat until the model outputs an end-of-sequence token or hits the max length.
