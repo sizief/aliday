@@ -82,3 +82,21 @@ a:hover {
   opacity: 1;
   text-decoration: underline;
 }
+[hidden] {
+  display: none !important;
+}
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.thumbs a {
+  display: block;
+}
+.thumbs img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  display: block;
+}
